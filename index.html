@@ -1,0 +1,123 @@
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />  
+  <title>Xylemtech</title>  
+  <link rel="stylesheet" href="styles.css" />  
+  <script src="https://js.paystack.co/v1/inline.js"></script>  
+</head>  
+<body>  
+  <header>  
+    <div class="logo">  
+      <img class="mylogo" src="mylogo.jpg" alt="Xylemtech Logo" />  
+    </div>  
+    <nav>  
+      <ul class="nav-links">  
+        <li><a href="#home">Home</a></li>  
+        <li><a href="#courses">Courses</a></li>  
+        <li><a href="#projects">Projects</a></li>  
+        <li><a href="#tools">Tools</a></li>  
+        <li><a href="#contact">Contact</a></li>  
+        <li><a href="#apply">Apply & Pay</a></li>  
+      </ul>  
+      <div class="burger">  
+        <div class="line"></div>  
+        <div class="line"></div>  
+        <div class="line"></div>  
+      </div>  
+    </nav>  
+  </header>    <section id="home" class="hero">  
+    <h1>Welcome to Xylemtech Data Academy</h1>  
+    <p>Empowering students with practical data analysis skills using Excel, Power BI & Python.</p>  
+    <a href="#apply" class="btn">Start Learning</a>  
+  </section>    <section id="courses" class="courses">  
+  <h2>Our Data Analysis Courses</h2>  
+  <div class="course-grid">  
+    <div class="course-card">  
+      <img src="excel.jpg" alt="Excel Course" class="course-icon" />  
+      <h3>Excel Mastery</h3>  
+      <p>Master spreadsheet skills, data cleaning, pivot tables, dashboards, and reporting automation.</p>  
+      <a href="#apply" class="course-btn">Enroll Now</a>  
+    </div>  <div class="course-card">  
+  <img src="powerbi.jpg" alt="Power BI Course" class="course-icon" />  
+  <h3>Power BI Essentials</h3>  
+  <p>Learn how to create interactive business dashboards and reports from raw data using Power BI.</p>  
+  <a href="#apply" class="course-btn">Enroll Now</a>  
+</div>  
+
+<div class="course-card">  
+  <img src="python.jpg" alt="Python Course" class="course-icon" />  
+  <h3>Python for Data</h3>  
+  <p>Analyze, visualize, and model data using Python, Pandas, Matplotlib, and Scikit-Learn.</p>  
+  <a href="#apply" class="course-btn">Enroll Now</a>  
+</div>
+
+  </div>  
+</section>    <section id="testimonials" class="testimonials">  
+  <h2>What Our Students Say</h2>  
+  <div class="testimonial-slider">  
+    <div class="testimonial-card active">  
+      <img src="student1.jpg" alt="Becky" class="testimonial-img" />  
+      <p>"I never thought data analysis could be this easy. The Excel and Power BI classes changed my career!"</p>  
+      <h4>— Becky., Business Analyst</h4>  
+    </div>  
+    <div class="testimonial-card">  
+      <img src="student2.jpg" alt="loveday" class="testimonial-img" />  
+      <p>"Python scared me until I joined this academy. The projects, support, and community are top-notch."</p>  
+      <h4>— Loveday., Junior Data Scientist</h4>  
+    </div>  
+    <div class="testimonial-card">  
+      <img src="student3.jpg" alt="Hilary" class="testimonial-img" />  
+      <p>"The hands-on training helped me build a dashboard for my company within 4 weeks of joining!"</p>  
+      <h4>— Hilary, Sales Manager</h4>  
+    </div>  
+  </div>  
+</section>    <section id="apply" class="apply">  
+  <h2>Apply Now</h2>  
+  <form id="applyForm">  
+  <input type="text" name="fullname" id="fullname" placeholder="Full Name" required />  
+  <input type="email" name="email" id="email" placeholder="Email Address" required />  
+  <input type="tel" name="phone" id="phone" placeholder="Phone Number" required />    <select name="course" id="course" required>  
+    <option value="">Select Course</option>  
+    <option value="excel">Data Analysis</option>  
+   
+  </select>    <select name="level" id="level" required>  
+    <option value="">Knowledge Level</option>  
+    <option value="Beginner">Beginner</option>  
+    <option value="Intermediate">Intermediate</option>  
+    <option value="Expert">Expert</option>  
+  </select> 
+<button type="submit">
+<span class="btn-text">Apply Now</span>
+<span class="spinner" style="display:none;">⏳</span>
+</button>
+
+</form>  
+</section>  
+<section id="tools" class="features">  
+    <div class="feature-card">  
+      <h3>Download Materials</h3>  
+      <p><a href="downloads/syllabus.pdf" target="_blank">Class Syllabus</a>, Excel templates, and data files.</p>  
+    </div>  
+    <div class="feature-card">  
+      <h3>Video Library</h3>  
+      <p><a href="https://youtube.com">Rewatch past lectures and tutorials anytime from our YouTube playlist.</a></p>  
+    </div>  
+    <div class="feature-card">  
+      <h3>Join Live Class</h3>  
+      <p><a href="https://zoom.us/j/your-meeting-id">Click to Join Zoom Class</a></p>  
+    </div>  
+  </section>    <section id="contact" class="contact">  
+    <h2>Contact Instructor</h2>  
+    <form id="contactForm">  
+      <input type="text" id="name" placeholder="Your Name" required />  
+      <input type="email" id=" contactemail" placeholder="Your Email" required />  
+      <textarea id="message" placeholder="Message or Question" required></textarea>  
+      <button type="submit">Send Message</button>  
+    </form>  
+  </section>    <footer>  
+    <p>© 2025 Xylemtech Data Academy. All rights reserved.</p>  
+  </footer>  
+<script src="script.js"></script>  </body>  
+  
+</html>
