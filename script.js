@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const amount = coursePrices[course];
 
       const handler = PaystackPop.setup({
-        key: 'pk_live_8b3974a1d8163244030bb3b2735556203fed3e81', // Replace with your actual public key
+        key: 'sk_live_1a7d49ed81ad728530f16b91c5903d862eb969ac', // Replace with your actual public key
         email: email,
         amount: amount,
         currency: "NGN",
