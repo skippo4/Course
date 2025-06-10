@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const level = document.getElementById("level").value;
 
       const coursePrices = {
-        excel: 10000,
+        excel: 1000000,
         powerbi: 150000,
         python: 200000
       };
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
           ]
         },
         callback: function (response) {
-          fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+          fetch("https://script.google.com/macros/s/AKfycbxWMLcotN-eixAk-DbCTdG01WSp1w7caEPZcaQs4N_SEhdf5i2Dtf2EnVs3nvLsQDMp/exec", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -92,7 +92,8 @@ document.addEventListener('DOMContentLoaded', function () {
             })
           })
           .then(() => {
-            window.location.href = `thank-you.html?ref=${response.reference}`;
+            // ✅ Redirect to WhatsApp group
+            window.location.href = `https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl`;
           })
           .catch(() => {
             alert("Payment succeeded but data was not saved.");
