@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const amount = coursePrices[course];
 
       const handler = PaystackPop.setup({
-        key: 'pk_live_8b3974a1d8163244030bb3b2735556203fed3e81',
+        key: 'pk_test_5b46993ec51dbdb81b8685677d267223a8e97420',
         email: email,
         amount: amount,
         currency: "NGN",
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
         callback: function (response) {
           (async () => {
             try {
-              await fetch("https://script.google.com/macros/s/AKfycbxWMLcotN-eixAk-DbCTdG01WSp1w7caEPZcaQs4N_SEhdf5i2Dtf2EnVs3nvLsQDMp/exec", {
+              await fetch("https://script.google.com/macros/s/AKfycbyQ2QtdOE1y-9IqeJiqCQmKIW16fCAO_Ph1rq9xZ44/dev", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
