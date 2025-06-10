@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Apply & Pay Form
   const form = document.getElementById("applyForm");
   if (form) {
-    form.addEventListener("submit", async function (e) {
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
 
       const fullname = document.getElementById("fullname").value.trim();
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const level = document.getElementById("level").value;
 
       const coursePrices = {
-        excel: 10000,
+        excel: 1000000,
         powerbi: 150000,
         python: 200000
       };
@@ -56,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      // Show spinner and update button text
       const btnText = document.querySelector(".btn-text");
       const spinner = document.querySelector(".spinner");
       if (btnText) btnText.textContent = "Processing...";
@@ -65,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const amount = coursePrices[course];
 
       const handler = PaystackPop.setup({
-        key: 'pk_live_8b3974a1d8163244030bb3b2735556203fed3e81', // Replace with your actual public key
+        key: 'pk_live_8b3974a1d8163244030bb3b2735556203fed3e81',
         email: email,
         amount: amount,
         currency: "NGN",
@@ -78,48 +77,31 @@ document.addEventListener('DOMContentLoaded', function () {
             { display_name: "Level", variable_name: "level", value: level }
           ]
         },
-        callback: async function (response) {
-  try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbxWMLcotN-eixAk-DbCTdG01WSp1w7caEPZcaQs4N_SEhdf5i2Dtf2EnVs3nvLsQDMp/exec", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        fullname,
-        email,
-        phone,
-        course,
-        level,
-        reference: response.reference
-      })
-    });
+        callback: function (response) {
+          (async () => {
+            try {
+              await fetch("https://script.google.com/macros/s/AKfycbxWMLcotN-eixAk-DbCTdG01WSp1w7caEPZcaQs4N_SEhdf5i2Dtf2EnVs3nvLsQDMp/exec", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  fullname,
+                  email,
+                  phone,
+                  course,
+                  level,
+                  reference: response.reference
+                })
+              });
 
-    if (!res.ok) throw new Error("Failed to save data");
+              window.location.href = `https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl`;
 
-    // ✅ Only redirect if the request is successful
-    window.location.href = `https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl`;
-
-  } catch (err) {
-    alert("Payment was successful, but we couldn't save your data. Please contact support.");
-  } finally {
-    // Optional: reset button state
-    if (btnText) btnText.textContent = "Apply & Pay";
-    if (spinner) spinner.style.display = "none";
-  }
-});
-
-    if (!res.ok) throw new Error("Failed to save data");
-
-    // ✅ Only redirect if the request is successful
-    window.location.href = `https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl`;
-
-  } catch (err) {
-    alert("Payment was successful, but we couldn't save your data. Please contact support.");
-  } finally {
-    // Optional: reset button state
-    if (btnText) btnText.textContent = "Apply & Pay";
-    if (spinner) spinner.style.display = "none";
-  }
-});
+            } catch (err) {
+              alert("Payment succeeded but data was not saved.");
+            } finally {
+              if (btnText) btnText.textContent = "Apply & Pay";
+              if (spinner) spinner.style.display = "none";
+            }
+          })();
         },
         onClose: function () {
           alert("Payment was cancelled.");
@@ -132,4 +114,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-
