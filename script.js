@@ -78,26 +78,48 @@ document.addEventListener('DOMContentLoaded', function () {
             { display_name: "Level", variable_name: "level", value: level }
           ]
         },
-        callback: function (response) {
-          fetch("https://script.google.com/macros/s/AKfycbxWMLcotN-eixAk-DbCTdG01WSp1w7caEPZcaQs4N_SEhdf5i2Dtf2EnVs3nvLsQDMp/exec", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              fullname,
-              email,
-              phone,
-              course,
-              level,
-              reference: response.reference
-            })
-          })
-          .then(() => {
-            // ✅ Redirect to WhatsApp group
-            window.location.href = `https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl`;
-          })
-          .catch(() => {
-            alert("Payment succeeded but data was not saved.");
-          });
+        callback: async function (response) {
+  try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbxWMLcotN-eixAk-DbCTdG01WSp1w7caEPZcaQs4N_SEhdf5i2Dtf2EnVs3nvLsQDMp/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fullname,
+        email,
+        phone,
+        course,
+        level,
+        reference: response.reference
+      })
+    });
+
+    if (!res.ok) throw new Error("Failed to save data");
+
+    // ✅ Only redirect if the request is successful
+    window.location.href = `https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl`;
+
+  } catch (err) {
+    alert("Payment was successful, but we couldn't save your data. Please contact support.");
+  } finally {
+    // Optional: reset button state
+    if (btnText) btnText.textContent = "Apply & Pay";
+    if (spinner) spinner.style.display = "none";
+  }
+});
+
+    if (!res.ok) throw new Error("Failed to save data");
+
+    // ✅ Only redirect if the request is successful
+    window.location.href = `https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl`;
+
+  } catch (err) {
+    alert("Payment was successful, but we couldn't save your data. Please contact support.");
+  } finally {
+    // Optional: reset button state
+    if (btnText) btnText.textContent = "Apply & Pay";
+    if (spinner) spinner.style.display = "none";
+  }
+});
         },
         onClose: function () {
           alert("Payment was cancelled.");
