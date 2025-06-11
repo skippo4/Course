@@ -79,24 +79,34 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         callback: function (response) {
           (async () => {
+            const studentData = {
+              fullname,
+              email,
+              phone,
+              course,
+              level,
+              reference: response.reference
+            };
+
+            console.log("Sending data to Google Sheets:", studentData);
+
             try {
-              await fetch("https://script.google.com/macros/s/AKfycbxWMLcotN-eixAk-DbCTdG01WSp1w7caEPZcaQs4N_SEhdf5i2Dtf2EnVs3nvLsQDMp/exec", {
+              const res = await fetch("https://script.google.com/macros/s/AKfycbyQ2QtdOE1y-9IqeJiqCQmKIW16fCAO_Ph1rq9xZ44/dev", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  fullname,
-                  email,
-                  phone,
-                  course,
-                  level,
-                  reference: response.reference
-                })
+                body: JSON.stringify(studentData)
               });
 
-              window.location.href = `https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl`;
+              if (!res.ok) {
+                throw new Error("Google Script returned error: " + res.status);
+              }
+
+              console.log("Data saved successfully. Redirecting...");
+              window.location.href = "https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl";
 
             } catch (err) {
-              alert("Payment succeeded but data was not saved.");
+              console.error("Error saving data to Google Sheets:", err);
+              alert("Payment succeeded, but data was not saved. Please contact support.");
             } finally {
               if (btnText) btnText.textContent = "Apply & Pay";
               if (spinner) spinner.style.display = "none";
