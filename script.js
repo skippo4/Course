@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
         callback: function (response) {
           (async () => {
             try {
-              await fetch("https://script.google.com/macros/s/AKfycbyQ2QtdOE1y-9IqeJiqCQmKIW16fCAO_Ph1rq9xZ44/dev", {
+              await fetch("https://script.google.com/macros/s/AKfycbxWMLcotN-eixAk-DbCTdG01WSp1w7caEPZcaQs4N_SEhdf5i2Dtf2EnVs3nvLsQDMp/exec", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
