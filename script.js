@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Sending data to Google Sheets:", studentData);
 
             try {
-              const res = await fetch("https://script.google.com/macros/s/AKfycbxON2-gcqly8LNCq1LDjb71ujKemmPlsM4sbXmjfKYZdlXhhUjItwfW3b34C8oLAwFB/exec", {
+              const res = await fetch("https://script.google.com/macros/s/AKfycbwYycblSOTIqK5ZQ_Hy8adlYkeRu_WQKLaPoyu8uTpqDwd7SbLuzc33l4kEuvoMR1IBaQ/exec", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(studentData)
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             } catch (err) {
               console.error("Error saving data to Google Sheets:", err);
-              alert("Payment succeeded, but data was not saved. Please contact support.");
+              alert("Payment succeeded but not saved");
             } finally {
               if (btnText) btnText.textContent = "Apply & Pay";
               if (spinner) spinner.style.display = "none";
