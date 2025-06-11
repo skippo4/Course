@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Sending data to Google Sheets:", studentData);
 
             try {
-              const res = await fetch("https://script.google.com/macros/s/AKfycbyQ2QtdOE1y-9IqeJiqCQmKIW16fCAO_Ph1rq9xZ44/dev", {
+              const res = await fetch("https://script.google.com/macros/s/AKfycbw5mL323b5Fyai-jp3ebuV880v2yNU76zz1p8dq_Yf09kL4EIOJ85HwB2Rw2HjGIixC/exec", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(studentData)
