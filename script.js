@@ -101,15 +101,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 throw new Error("Google Script returned error: " + res.status);
               }
 
-              console.log("Data saved successfully. Redirecting...");
-              window.location.href = "https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl";
-
+              console.log("Data saved successfully.");
             } catch (err) {
               console.error("Error saving data to Google Sheets:", err);
               alert("Payment succeeded but not saved");
             } finally {
               if (btnText) btnText.textContent = "Apply & Pay";
               if (spinner) spinner.style.display = "none";
+              // ✅ Always redirect to WhatsApp
+              window.location.href = "https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl";
             }
           })();
         },
