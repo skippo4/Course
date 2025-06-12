@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
               console.log("Data saved successfully.");
             } catch (err) {
               console.error("Error saving data to Google Sheets:", err);
-              alert("Payment succeeded but");
+              alert("Payment succeeded bbbbbb");
             } finally {
               if (btnText) btnText.textContent = "Apply & Pay";
               if (spinner) spinner.style.display = "none";
