@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const level = document.getElementById("level").value;
 
       const coursePrices = {
-        excel: 10000,
+        excel: 100000,
         powerbi: 150000,
         python: 200000
       };
