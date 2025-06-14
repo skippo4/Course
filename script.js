@@ -64,63 +64,57 @@ document.addEventListener('DOMContentLoaded', function () {
       const amount = coursePrices[course];
 
       const handler = PaystackPop.setup({
-        key: 'pk_test_5b46993ec51dbdb81b8685677d267223a8e97420',
-        email: email,
-        amount: amount,
-        currency: "NGN",
-        ref: "XYLEM_" + Math.floor(Math.random() * 1000000000),
-        metadata: {
-          custom_fields: [
-            { display_name: "Full Name", variable_name: "fullname", value: fullname },
-            { display_name: "Phone", variable_name: "phone", value: phone },
-            { display_name: "Course", variable_name: "course", value: course },
-            { display_name: "Level", variable_name: "level", value: level }
-          ]
-        },
-        callback: function (response) {
-          (async () => {
-            const studentData = {
-              fullname,
-              email,
-              phone,
-              course,
-              level,
-              reference: response.reference
-            };
+  key: 'pk_test_5b46993ec51dbdb81b8685677d267223a8e97420',
+  email: email,
+  amount: amount,
+  currency: "NGN",
+  ref: "XYLEM_" + Math.floor(Math.random() * 1000000000),
+  metadata: {
+    full_name: fullname,
+    phone: phone,
+    course: course,
+    level: level
+  },
+  callback: function (response) {
+    (async () => {
+      const studentData = {
+        fullname,
+        email,
+        phone,
+        course,
+        level,
+        reference: response.reference
+      };
 
-            console.log("Sending data to Google Sheets:", studentData);
+      try {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbyji0c5eriKlcSMIE3zKw90_xCh_4Oko4bdkrhOalKHoMoPJsuSALw862QpzYmHlmFc7g/exec", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(studentData)
+        });
 
-            try {
-              const res = await fetch("https://script.google.com/macros/s/AKfycbyKRdiEjGJG5aihDxozPxLKlAhfkBqTbS48S7PZU5sZv6BYwUWfnt8MiCz34EIaeVtkqQ/exec", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(studentData)
-              });
-
-              if (!res.ok) {
-                throw new Error("Google Script returned error: " + res.status);
-              }
-
-              console.log("Data saved successfully.");
-            } catch (err) {
-              console.error("Error saving data to Google Sheets:", err);
-              alert("Payment succeeded b");
-            } finally {
-              if (btnText) btnText.textContent = "Apply & Pay";
-              if (spinner) spinner.style.display = "none";
-              // ✅ Always redirect to WhatsApp
-              window.location.href = "https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl";
-            }
-          })();
-        },
-        onClose: function () {
-          alert("Payment was cancelled.");
-          if (btnText) btnText.textContent = "Apply & Pay";
-          if (spinner) spinner.style.display = "none";
+        if (!res.ok) {
+          throw new Error("Google Script error: " + res.status);
         }
-      });
 
-      handler.openIframe();
+        alert("Payment successful and data saved!");
+      } catch (err) {
+        console.error("Failed to save to Google Sheets:", err);
+        alert("Payment succeeded but saving failed.");
+      } finally {
+        if (btnText) btnText.textContent = "Apply & Pay";
+        if (spinner) spinner.style.display = "none";
+        window.location.href = "https://chat.whatsapp.com/Gx1awJ1J8tc7j8pndZpvBl";
+      }
+    })();
+  },
+  onClose: function () {
+    alert("Payment was cancelled.");
+    if (btnText) btnText.textContent = "Apply & Pay";
+    if (spinner) spinner.style.display = "none";
+  }
+});
+handler.openIframe();
     });
   }
 });
